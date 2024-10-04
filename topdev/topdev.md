@@ -4,7 +4,7 @@
 - TopDev là nền tảng tuyển dụng lớn trong lĩnh vực công nghệ thông tin, nơi thu thập nhiều dữ liệu từ các nhà tuyển dụng và ứng viên. Việc phân tích dữ liệu từ nền tảng này sẽ cung cấp các insights quan trọng về xu hướng tuyển dụng, nhu cầu kỹ năng và định hướng nghề nghiệp, giúp các bên liên quan đưa ra quyết định phù hợp.
 
 ## Nguồn dữ liệu:
-- Dữ liệu sẽ được thu thập từ nền tảng TopDev.vn và các nguồn dữ liệu công khai khác liên quan đến thị trường tuyển dụng CNTT.
+- Dữ liệu sẽ được thu thập từ nền tảng TopDev.vn.
 
 ## Đối tượng hướng đến:
 - Nhà tuyển dụng: Cải thiện chiến lược tuyển dụng và lựa chọn ứng viên phù hợp.

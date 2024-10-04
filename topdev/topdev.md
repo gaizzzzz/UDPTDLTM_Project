@@ -13,7 +13,7 @@
 - Nhà nghiên cứu và các cơ quan quản lý: Đưa ra các phân tích, dự báo về xu hướng nghề nghiệp trong lĩnh vực công nghệ.
 
 ## Cách thức crawl dữ liệu:
-- **Thư viện sử dụng: Selenium, là một thư viện rất phù hợp cho việc thu thập dữ liệu động (dynamic data hay là real-time data).
+- Thư viện sử dụng: Selenium, là một thư viện rất phù hợp cho việc thu thập dữ liệu động (dynamic data hay là real-time data).
 - Thư viện khác: Pandas, là một thư viện dùng để thao tác và phân tích dữ liệu, và trong trường hợp này dùng để lưu trữ dữ liệu vào file .csv.
 - Các bước thu thập dữ liệu:
     1. Import các thư viện cần thiết.

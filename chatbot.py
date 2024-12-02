@@ -1,0 +1,67 @@
+import streamlit as st
+# from reportlab.pdfgen import canvas
+# from reportlab.lib.pagesizes import A4
+# from io import BytesIO
+# import base64
+# import pandas as pd
+# import google.generativeai as genai
+from langchain.schema import HumanMessage, AIMessage
+from huggingface_hub import InferenceClient
+from IPython.display import Markdown, display
+import pandas as pd
+
+client = InferenceClient(api_key="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")
+
+# Function to generate content from a user question
+def generate_content(question):
+    messages = [
+        {
+            "role": "user",
+            "content": question
+        }
+    ]
+    completion = client.chat.completions.create(
+        model="mistralai/Mixtral-8x7B-Instruct-v0.1", 
+        messages=messages, 
+        max_tokens=20000
+    )
+    return completion.choices[0].message.content
+
+def tab_2():
+    st.header("Chatbot")
+
+    # Conversation history storage
+    base_prompt = f"Given a dataset below\n" + str(pd.read_csv("processed_data.csv")) + "\n\n"
+    response = generate_content(base_prompt)
+
+    if "chat_history" not in st.session_state:
+        st.session_state["chat_history"] = [{"user": base_prompt, "bot": response}]
+    
+    # Display complete chat history first
+    chat = st.session_state["chat_history"]
+    for i in range(len(chat)):
+        if i==0:
+            continue
+        st.markdown(f'''
+            <div style="text-align: left; padding: 10px; background-color: #F1F1F1; border-radius: 15px; margin-bottom: 5px;">
+                {chat[i]["user"]}
+            </div>
+        ''', unsafe_allow_html=True)
+        st.markdown(f'''
+            <div style="text-align: left; padding: 10px; background-color: #D1E8E2; border-radius: 15px; margin-bottom: 5px;">
+                {chat[i]["bot"]}
+            </div>
+        ''', unsafe_allow_html=True)
+
+    user_input = st.text_input("👤: Chat with data!", placeholder="Input new prompt here...")
+    
+    if user_input:
+        # Generate response using custom function
+        response = generate_content("History of conversation:\n" + str(st.session_state["chat_history"]) + "\n\n" + user_input)
+        # Store input and response in session state
+        st.session_state["chat_history"].append({"user": user_input, "bot": response})
+        st.markdown(f'''
+            <div style="text-align: left; padding: 10px; background-color: #D1E8E2; border-radius: 15px; margin-bottom: 5px;">
+                {response}
+            </div>
+        ''', unsafe_allow_html=True)

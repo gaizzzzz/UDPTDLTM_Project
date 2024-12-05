@@ -79,6 +79,7 @@ def tab_4():
     df['loai_hop_dong'] = df['loai_hop_dong'].apply(convert_string)
     df['cong_nghe_su_dung'] = df['cong_nghe_su_dung'].apply(convert_string)
     df['quy_trinh_phong_van'] = df['quy_trinh_phong_van'].apply(convert_string)
+    df['nhom_cong_viec'] = df["nhom_cong_viec"].apply(convert_string)
     
     data = df.copy()
     

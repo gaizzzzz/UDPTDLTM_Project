@@ -60,7 +60,7 @@ def tab_3():
         # response = generate_content("History of conversation:\n" + str(st.session_state["chat_history"]) + "\n\n" + user_input)
         response = generate_content(base_prompt + user_input)
         # Store input and response in session state
-        st.session_state["chat_history"].append({"user": user_input, "bot": response})
+        # st.session_state["chat_history"].append({"user": user_input, "bot": response})
         st.markdown(f'''
             <div style="text-align: left; padding: 10px; background-color: #D1E8E2; border-radius: 15px; margin-bottom: 5px;">
                 {response}

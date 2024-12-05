@@ -6,14 +6,15 @@ import streamlit as st
 # import pandas as pd
 # import google.generativeai as genai
 from dashboard import tab_1
-from chatbot import tab_2
-from recommendation import tab_3
+from recommendation import tab_2
+from chatbot import tab_3
+from feature import tab_4
 
 st.set_page_config(layout="wide", page_title="MongoDB Dashboard Integration")
 st.title("Streamlit Deployment")
 
 # Create horizontal tabs
-tab1, tab2, tab3 = st.tabs(["Dashboard", "Chatbot", "Recommendation"])
+tab1, tab2, tab3, tab4 = st.tabs(["Dashboard", "Recommendation", "Q&A", "Feature"])
 
 # Tab 1: Dashboard
 with tab1:
@@ -26,6 +27,9 @@ with tab2:
 # Tab 3: Recommendation
 with tab3:
     tab_3()
+
+with tab4:
+    tab_4()
 
 # Footer Section
 st.markdown("---")

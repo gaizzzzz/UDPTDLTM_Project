@@ -54,16 +54,16 @@ def tab_2():
         st.session_state.input_count = 1
 
     if 'inputs' not in st.session_state:
-        st.session_state.inputs = []
+        st.session_state.inputs = [""]
 
     def add_input():
         st.session_state.input_count += 1
 
     def reload():
-        st.session_state.input_count = 1
-        st.session_state.inputs = []
+        st.session_state.input_count = 0
+        st.session_state.inputs = [""]
 
-    st.button('Tạo mới', on_click=reload)
+    st.button('Tạo mới', on_click=reload) 
 
     # Tạo các ô input hiện tại
     for i in range(st.session_state.input_count):
@@ -76,9 +76,7 @@ def tab_2():
                 st.session_state.inputs[i] = input_value
 
 
-    col1, col2, _ = st.columns([5, 20, 5])
-    with col1:
-        st.button('Thêm từ khóa', on_click=add_input)        
+    st.button('Thêm từ khóa', on_click=add_input)    
 
     # Các từ khóa cần tìm
     keywords = st.session_state.inputs
@@ -107,7 +105,7 @@ def tab_2():
     # Sắp xếp theo tỷ lệ khớp giảm dần
     sorted_df = filtered_df.sort_values(by='Tỷ lệ khớp', ascending=False)
 
-    col1, col2, col3 = st.columns([11, 8, 20])
+    col1, col2, col3 = st.columns([3, 2, 15])
     with col1:
         st.write("Số công việc muốn hiển thị:")
     with col2:

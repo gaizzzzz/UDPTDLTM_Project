@@ -16,22 +16,7 @@
 
 - Clear the data from MongoDB Atlas Collection
 > Update csv_backup from: [Backup_Data](https://drive.google.com/drive/u/0/folders/14Yj5p6biBFBiXYM0dcZYV88EyMJQ45PG)
-- Run all cells in `topdev_preprocess_all_in_one.ipynb`
-
-### Model:
-
-- Evaluate the Gemini GenAI in predicting job salary, using `topdev_evaluate_salary_model.ipynb`
-- Run all cells in `topdev_model_preparation.ipynb`
-
-### Test streamlit:
-
-- Open terminal and run:
-```
-streamlit run test.py
-```
-- Open browser and go to http://localhost:8501/
-
-- Now, you can see the MongoDB dashboard in homepage
+- Run all cells in `topdev_preprocess_job_cluster.ipynb` to get `processed_data.csv`
 
 ### Deploy web application:
 

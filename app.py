@@ -10,7 +10,7 @@ from recommendation import tab_2
 from chatbot import tab_3
 from feature import tab_4
 
-st.set_page_config(layout="wide", page_title="MongoDB Dashboard Integration")
+st.set_page_config(layout="wide", page_title="UDPTDLTM Streamlit App")
 st.title("Streamlit Deployment")
 
 # Create horizontal tabs

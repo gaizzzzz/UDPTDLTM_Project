@@ -75,3 +75,5 @@ reportlab
 # json
 # sagemaker
 # boto3
+
+huggingface_hub

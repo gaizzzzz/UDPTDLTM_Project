@@ -113,14 +113,12 @@ def tab_4():
     # Select a row by showing the index
     row_to_select = st.selectbox("Select a row:", df.index)
 
-    st.write("### Job Details")
-
     # Split into two columns
     col1, col2 = st.columns(2)
 
     # Job Details Input
     with col1:
-        # st.write("### Job Details")
+        st.write("### Job Details")
         job_title = st.text_input("Job Title", str(df.ten_cong_viec[row_to_select]))
         company_name = st.text_input("Company Name", str(df.ten_cong_ty[row_to_select]))
         company_address = st.text_input("Company Address", str(df.dia_chi[row_to_select]))
@@ -131,24 +129,20 @@ def tab_4():
         job_type = st.text_input("Job Type", str(df.loai_hinh[row_to_select]))
         contract_type = st.text_input("Contract Type", str(df.loai_hop_dong[row_to_select]))
         # experience_required = st.text_input("Experience Required (years)", min_value=0.0, max_value=10.0, value=float(df.nam_kinh_nghiem[row_to_select]), step=0.5)
-        # experience_required = st.text_input("Experience Required (years)", str(df.nam_kinh_nghiem[row_to_select]))
-        # technology_requirements = st.text_area("Technology Requirements (comma-separated)", str(df.cong_nghe_su_dung[row_to_select]))
-        # interview_process = st.text_area("Interview Process", str(df.quy_trinh_phong_van[row_to_select]))
-        # job_description = st.text_area("Job Description", str(df.mo_ta_cong_viec[row_to_select]))
-        # company_info = st.text_area("Company Information", str(df.thong_tin_cong_ty[row_to_select]))
-
-    # Candidate Details Input
-    with col2:
-        # st.write("### Candidate Details")
-        # name = st.text_input("Candidate Name", "John Doe")
-        # email = st.text_input("Candidate Email", "john.doe@example.com")
-        # phone = st.text_input("Candidate Phone", "+123456789")
-        # skills = st.text_area("Candidate Skills (comma-separated)", "Python, Data Analysis, Team Leadership").split(',')
         experience_required = st.text_input("Experience Required (years)", str(df.nam_kinh_nghiem[row_to_select]))
         technology_requirements = st.text_area("Technology Requirements (comma-separated)", str(df.cong_nghe_su_dung[row_to_select]))
         interview_process = st.text_area("Interview Process", str(df.quy_trinh_phong_van[row_to_select]))
         job_description = st.text_area("Job Description", str(df.mo_ta_cong_viec[row_to_select]))
         company_info = st.text_area("Company Information", str(df.thong_tin_cong_ty[row_to_select]))
+
+    # Candidate Details Input
+    with col2:
+        st.write("### Candidate Details")
+        # name = st.text_input("Candidate Name", "John Doe")
+        # email = st.text_input("Candidate Email", "john.doe@example.com")
+        # phone = st.text_input("Candidate Phone", "+123456789")
+        # skills = st.text_area("Candidate Skills (comma-separated)", "Python, Data Analysis, Team Leadership").split(',')
+        describe = st.text_area("Describe Yourself")
 
     # Predict salary
     with col1:
@@ -171,48 +165,77 @@ def tab_4():
             14. Thông tin công ty: {company_info}
 
             Hãy dự đoán khoảng của mức lương theo đơn vị USD, chỉ trả lời giá trị số theo cú pháp:
-            "<Giá trị nhỏ nhất> - <Giá trị lớn nhất> $"
+            "<Giá trị nhỏ nhất> - <Giá trị lớn nhất>"
             """
 
             markdown_string = model.generate_content(prompt).text
-            st.markdown("#### " + markdown_string)
+            st.markdown(markdown_string)
 
     # Generate CV
-    # with col2:
-    #     if st.button("Generate CV PDF"):
-    #         job_data = {
-    #             "job_title": job_title,
-    #             "company_name": company_name,
-    #             "company_address": company_address,
-    #             "company_field": company_field,
-    #             "company_size": company_size,
-    #             "company_nationality": company_nationality,
-    #             "experience_required": experience_required,
-    #             "job_level": job_level,
-    #             "job_type": job_type,
-    #             "contract_type": contract_type,
-    #             "technology_requirements": [tech.strip() for tech in technology_requirements],
-    #             "interview_process": interview_process,
-    #             "job_description": job_description,
-    #             "company_info": company_info,
-    #         }
+    with col2:
+        # if st.button("Generate CV PDF"):
+        if st.button("Get Advice"):
+            job_data = {
+                "job_title": job_title,
+                "company_name": company_name,
+                "company_address": company_address,
+                "company_field": company_field,
+                "company_size": company_size,
+                "company_nationality": company_nationality,
+                "experience_required": experience_required,
+                "job_level": job_level,
+                "job_type": job_type,
+                "contract_type": contract_type,
+                "technology_requirements": [tech.strip() for tech in technology_requirements],
+                "interview_process": interview_process,
+                "job_description": job_description,
+                "company_info": company_info,
+            }
 
-    #         candidate_data = {
-    #             "name": name,
-    #             "email": email,
-    #             "phone": phone,
-    #             "skills": [skill.strip() for skill in skills],
-    #         }
+            candidate_data = {
+                # "name": name,
+                # "email": email,
+                # "phone": phone,
+                # "skills": [skill.strip() for skill in skills],
+                "describe": describe,
+            }
 
-    #         pdf_buffer = generate_cv(job_data, candidate_data)
-    #         pdf_data = pdf_buffer.getvalue()
+            prompt = f""" Cho thông tin của một công việc như sau:
 
-    #         st.write("### CV PDF Preview")
-    #         embed_pdf(pdf_data)
+            1. Tên công việc: {job_title}
+            2. Tên công ty: {company_name}
+            3. Địa chỉ: {company_address}
+            4. Lĩnh vực của công ty: {company_field}
+            5. Quy mô công ty: {company_size}
+            6. Quốc tịch công ty: {company_nationality}
+            7. Yêu cầu về số năm kinh nghiệm: {experience_required}
+            8. Cấp bậc: {job_level}
+            9. Loại hình: {job_type}
+            10. Loại hợp đồng: {contract_type}
+            11. Yêu cầu về công nghệ: {technology_requirements}
+            12. Quy trình phỏng vấn: {interview_process}
+            13. Mô tả công việc: {job_description}
+            14. Thông tin công ty: {company_info}
 
-    #         st.download_button(
-    #             label="Download CV",
-    #             data=pdf_data,
-    #             file_name="cv_based_on_job.pdf",
-    #             mime="application/pdf"
-    #         )  
+            Và thông tin của ứng viên như sau:
+            {describe}
+
+            Xem xét khả năng đậu công việc của ứng viên dựa vào thông tin đã cho.
+            Đưa ra lời khuyên cho ứng viên.
+            """
+
+            markdown_string = model.generate_content(prompt).text
+            st.markdown(markdown_string)
+
+            # pdf_buffer = generate_cv(job_data, candidate_data)
+            # pdf_data = pdf_buffer.getvalue()
+
+            # st.write("### CV PDF Preview")
+            # embed_pdf(pdf_data)
+
+            # st.download_button(
+            #     label="Download CV",
+            #     data=pdf_data,
+            #     file_name="cv_based_on_job.pdf",
+            #     mime="application/pdf"
+            # )  

@@ -32,9 +32,11 @@ streamlit run app.py
 
 **FIT@HCMUS - 21/24 - Intelligent Data Analytics Applications**
 
-- **21120045**: Bùi Hồng Đăng
-- **21120108**: Nguyễn Tiến Nhật  
-- **21120110**: Nguyễn Tấn Phát
-- **21120115**: Nguyễn Trọng Phúc
-- **21120169**: Thái Chí Vỹ
-- **21120201**: Bùi Đình Bảo
+| Student ID  | Full Name              |
+|-------------|------------------------|
+| 21120045    | Bùi Hồng Đăng         |
+| 21120108    | Nguyễn Tiến Nhật      |
+| 21120110    | Nguyễn Tấn Phát       |
+| 21120115    | Nguyễn Trọng Phúc     |
+| 21120169    | Thái Chí Vỹ           |
+| 21120201    | Bùi Đình Bảo          |

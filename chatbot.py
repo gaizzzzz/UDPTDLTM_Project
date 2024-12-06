@@ -58,7 +58,7 @@ def tab_3():
     if user_input:
         # Generate response using custom function
         # response = generate_content("History of conversation:\n" + str(st.session_state["chat_history"]) + "\n\n" + user_input)
-        response = generate_content(base_prompt + user_input)
+        response = generate_content(base_prompt + user_input + ".Please give the answer base in dataset instead of giving the way to find it.")
         # Store input and response in session state
         # st.session_state["chat_history"].append({"user": user_input, "bot": response})
         st.markdown(f'''
